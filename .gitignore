@@ -22,6 +22,10 @@ obj/
 .DS_Store
 Thumbs.db
 
+# Devcontainer specific files (keep configuration, ignore temporary files)
+.devcontainer/.tmp/
+.devcontainer/docker-compose.override.yml
+
 # Language-specific
 # Python
 __pycache__/

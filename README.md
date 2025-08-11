@@ -55,6 +55,43 @@ Board-Games/
 
 ## 🚀 Getting Started
 
+### Development Environment
+
+For the best development experience, we recommend using the provided devcontainer setup:
+
+#### Using Devcontainer (Recommended)
+1. **Prerequisites:**
+   - [Visual Studio Code](https://code.visualstudio.com/)
+   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
+   - [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+2. **Quick Setup:**
+   ```bash
+   git clone https://github.com/ALTrijssenaar/Board-Games.git
+   cd Board-Games
+   code .
+   ```
+   
+3. **Open in Container:**
+   - When prompted, click "Reopen in Container", or
+   - Press `Ctrl+Shift+P` → "Dev Containers: Reopen in Container"
+
+4. **Start Developing:**
+   - All dependencies are automatically installed
+   - Use `./.devcontainer/dev-helper.sh help` for common commands
+   - Run `./.devcontainer/validate.sh` to verify setup
+   - Backend API: `http://localhost:5000`
+   - Frontend: `http://localhost:3000`
+
+📖 See [.devcontainer/README.md](.devcontainer/README.md) for detailed setup instructions and troubleshooting.
+
+#### Manual Setup
+If you prefer to set up your environment manually:
+- **.NET 8.0 SDK** for backend development
+- **Node.js 18+** for frontend development
+- **Git** for version control
+
+### Exploring Games
 Each game is contained in its own directory under `games/`. Visit the individual game folders to learn about specific rules, implementation details, and how to contribute.
 
 ## 🤝 Contributing
