@@ -6,6 +6,14 @@
 
 This is a newly created repository for board game development that currently contains only a README.md file. There is **no existing build system, source code, dependencies, or development infrastructure** at this time.
 
+## Technology Stack
+
+**MANDATORY TECHNOLOGY REQUIREMENTS**:
+- **All backends MUST be implemented in .NET Core C#**
+- **All frontends MUST be implemented in React**
+
+Do not use any other backend or frontend technologies unless explicitly approved. When creating new projects or components, always use these technologies as the foundation.
+
 ## Current Repository Structure
 
 ```
@@ -30,41 +38,48 @@ Since this repository is in its initial state:
 4. Check for existing source code directories before making assumptions about the project type
 
 ### Development Setup (When Code is Added)
-When this repository evolves and gains actual source code, validate these common patterns:
+When this repository evolves and gains actual source code, follow these patterns:
 
-#### For Web-Based Board Games:
-- Look for `package.json` - if present, run:
+#### Backend Development (.NET Core C#):
+- Look for `*.csproj` or `*.sln` files - if present, run:
+  - `dotnet restore` - NEVER CANCEL, set timeout to 60+ minutes
+  - `dotnet build` - NEVER CANCEL, set timeout to 60+ minutes
+  - `dotnet test` - NEVER CANCEL, set timeout to 30+ minutes
+  - `dotnet run` for development server
+- Use Entity Framework Core for database operations
+- Implement Web API controllers for game logic endpoints
+- Use SignalR for real-time multiplayer features
+
+#### Frontend Development (React):
+- Look for `package.json` in frontend directories - if present, run:
   - `npm install` (or `yarn install`)
   - `npm run build` - NEVER CANCEL builds, set timeout to 60+ minutes
   - `npm run test` - NEVER CANCEL tests, set timeout to 30+ minutes
   - `npm run dev` or `npm start` for development server
+- Use React hooks for state management
+- Implement responsive design with CSS modules or styled-components
+- Use React Router for navigation between game screens
 
-#### For Python-Based Games:
-- Look for `requirements.txt` or `pyproject.toml` - if present, run:
-  - `pip install -r requirements.txt`
-  - `python -m pytest` for tests - NEVER CANCEL, set timeout to 30+ minutes
-
-#### For Desktop Applications:
-- Look for platform-specific build files:
-  - Electron: `package.json` with electron dependencies
-  - C#/.NET: `*.csproj` or `*.sln` files
-  - Java: `pom.xml` or `build.gradle`
-  - Rust: `Cargo.toml`
+#### Legacy Support:
+The following patterns are provided for reference only. **DO NOT** use these technologies for new development:
+- Python-Based Games: Only if converting legacy code
+- Other Desktop Applications: Electron, Java, Rust - not approved for this repository
 
 ### Validation Requirements
 When code is added to this repository:
 - **MANUAL VALIDATION REQUIREMENT**: Always test actual game functionality after making changes
-- For web games: Test game mechanics, UI interactions, and multiplayer features if present
-- For desktop games: Test installation, startup, and core gameplay loops
+- For React frontends: Test component rendering, user interactions, responsive design, and state management
+- For .NET Core backends: Test API endpoints, database operations, SignalR connections, and business logic
 - Always verify that any game logic changes work through complete user scenarios
+- Test cross-platform compatibility (backend APIs should work with React frontend)
 
 ### Common Board Game Development Patterns
-When developing in this repository, consider these patterns:
-- **Game State Management**: Centralized state for board positions, player turns, game rules
-- **Player Management**: User authentication, multiplayer sessions, game lobbies
-- **Game Rules Engine**: Validation of moves, win conditions, scoring
-- **UI/UX**: Responsive design for different screen sizes, accessibility features
-- **Real-time Features**: WebSocket connections for multiplayer, live updates
+When developing in this repository, use these patterns with the required technology stack:
+- **Game State Management**: React Context API or Redux for frontend state, Entity Framework for backend persistence
+- **Player Management**: ASP.NET Core Identity for authentication, SignalR for session management
+- **Game Rules Engine**: C# classes with business logic validation, exposed via Web API controllers
+- **UI/UX**: React components with responsive design, accessibility features using ARIA attributes
+- **Real-time Features**: SignalR hubs for multiplayer, WebSocket connections managed by React hooks
 
 ## Timing Expectations
 **Current State**: No build times - repository is empty
@@ -77,40 +92,57 @@ When developing in this repository, consider these patterns:
 ## Linting and CI Requirements
 **Current State**: No linting or CI requirements
 **Future Guidelines**: When CI is added, always run:
-- Project-specific linters before committing (e.g., `npm run lint`, `flake8`, `cargo clippy`)
-- Format checkers (e.g., `npm run format`, `black`, `rustfmt`)
-- Security checks for any user input validation in game logic
+- .NET Core linters and formatters: `dotnet format`, `dotnet build --verbosity normal`
+- React linters and formatters: `npm run lint`, `npm run format`, `eslint`, `prettier`
+- Security checks for user input validation in game logic
+- Cross-platform compatibility tests between React frontend and .NET Core backend
 
 ## Project Navigation
 **Current Structure**: Single README.md file
 **Future Structure**: Watch for these key directories as they're added:
-- `/src` or `/app` - Main source code
-- `/assets` - Game images, sounds, board layouts
-- `/tests` - Test suites
+- `/backend` or `/api` - .NET Core C# backend application
+- `/frontend` or `/client` - React frontend application
+- `/shared` - Shared models and types between frontend and backend
+- `/tests` - Test suites for both backend and frontend
 - `/docs` - Game rules, API documentation
-- `/public` or `/static` - Web assets for browser-based games
+- `/assets` - Game images, sounds, board layouts (served by backend or CDN)
 
 ## Development Best Practices
-- **Always validate game rules**: Test edge cases, invalid moves, win conditions
-- **Consider accessibility**: Ensure games work with screen readers, keyboard navigation
-- **Test multiplayer scenarios**: If applicable, test with multiple browser tabs/clients
-- **Performance**: Board games should load quickly and respond smoothly to user input
-- **Mobile compatibility**: Test on different screen sizes if targeting mobile devices
+- **Always validate game rules**: Test edge cases, invalid moves, win conditions in C# backend logic
+- **Consider accessibility**: Ensure React components work with screen readers, keyboard navigation
+- **Test multiplayer scenarios**: Use SignalR connections, test with multiple browser tabs/clients
+- **Performance**: React components should render quickly, .NET Core APIs should respond within 200ms
+- **Mobile compatibility**: React components must be responsive and work on different screen sizes
+- **API Design**: Follow RESTful principles for .NET Core Web API endpoints
+- **Type Safety**: Use TypeScript with React, leverage C# strong typing in backend
 
 ## Troubleshooting
 **Current Issues**: None - repository is empty
 **Common Future Issues**:
-- Asset loading problems in web games - check file paths and CORS settings
-- State synchronization in multiplayer - verify WebSocket connections
-- Performance with complex boards - profile rendering and game logic
-- Build failures - ensure all dependencies are properly specified
+- React build failures - check Node.js version compatibility, clear node_modules and reinstall
+- .NET Core build errors - verify target framework, restore NuGet packages with `dotnet restore`
+- SignalR connection issues - verify CORS settings, check WebSocket support
+- API communication errors - validate React frontend can reach .NET Core backend endpoints
+- Performance issues - profile React components and .NET Core API response times
+- Database connectivity - ensure Entity Framework migrations are applied correctly
 
 ## Repository Evolution
-As this repository grows, update these instructions with:
-- Actual build commands and their measured execution times
-- Specific test scenarios for the implemented games
-- Platform-specific deployment instructions
-- Game-specific validation requirements
+**CRITICAL**: Always update these instructions whenever you learn new information about this repository.
+
+As this repository grows, **IMMEDIATELY** update these instructions with:
+- Actual build commands and their measured execution times for .NET Core and React
+- Specific test scenarios for the implemented board games
+- .NET Core deployment instructions (Azure, Docker, etc.)
+- React deployment instructions (static hosting, CDN, etc.)
+- Game-specific validation requirements and business rules
+- Performance benchmarks and optimization techniques discovered
+- Any deviations from or additions to the .NET Core C# + React technology stack
+
+**When adding new sections or updating existing ones**:
+1. Use imperative tone: "Run [this command]", "Do not do [this]"
+2. Include specific timeouts for long-running operations
+3. Document both successful and failed scenarios
+4. Add technology-specific guidance for .NET Core C# and React
 
 ## Contact and Support
 Check README.md and any future CONTRIBUTING.md files for project-specific guidance as they are added.
