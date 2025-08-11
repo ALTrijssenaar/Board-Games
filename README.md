@@ -12,7 +12,7 @@ This repository aims to:
 
 ## 🎮 Supported Games
 
-Currently includes the following games (implementations coming soon):
+Currently includes the following games:
 
 ### Strategy Games
 - **[Chess](games/chess/)** - The classic strategic battle between two armies
@@ -23,6 +23,9 @@ Currently includes the following games (implementations coming soon):
 ### Casual Games  
 - **[Tic-Tac-Toe](games/tic-tac-toe/)** - Simple 3×3 grid connection game
 - **[Connect Four](games/connect-four/)** - Drop discs to connect four in a row
+
+### Educational Games
+- **[Bever Gang](games/bever-gang/)** - 🦫 Strategic beaver building game (✅ **IMPLEMENTED**)
 
 ## 📁 Repository Structure
 
@@ -42,8 +45,12 @@ Board-Games/
     │   └── README.md     # Tic-tac-toe-specific documentation
     ├── connect-four/
     │   └── README.md     # Connect Four-specific documentation
-    └── backgammon/
-        └── README.md     # Backgammon-specific documentation
+    ├── backgammon/
+    │   └── README.md     # Backgammon-specific documentation
+    └── bever-gang/       # ✅ IMPLEMENTED
+        ├── README.md     # Bever Gang game documentation
+        ├── backend/      # .NET Core Web API backend
+        └── frontend/     # React TypeScript frontend
 ```
 
 ## 🚀 Getting Started
