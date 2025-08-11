@@ -77,6 +77,16 @@ cd /workspaces/Board-Games
 ./.devcontainer/dev-helper.sh run-frontend
 ```
 
+### Validating the Setup
+To verify that your devcontainer is working correctly:
+
+```bash
+# Run the validation script
+./.devcontainer/validate.sh
+```
+
+This will test all components and provide a comprehensive report of the setup status.
+
 ### Manual Commands
 
 #### Backend Development (.NET)
@@ -141,6 +151,13 @@ Convenience script for common development tasks:
 - Setting up dependencies
 - Cleaning build artifacts
 - Quick development workflows
+
+### `validate.sh`
+Validation script to test devcontainer functionality:
+- Verifies all tools are properly installed
+- Tests building and running existing projects
+- Provides comprehensive status report
+- Helps troubleshoot setup issues
 
 ## 🔧 Customization
 

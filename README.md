@@ -79,6 +79,7 @@ For the best development experience, we recommend using the provided devcontaine
 4. **Start Developing:**
    - All dependencies are automatically installed
    - Use `./.devcontainer/dev-helper.sh help` for common commands
+   - Run `./.devcontainer/validate.sh` to verify setup
    - Backend API: `http://localhost:5000`
    - Frontend: `http://localhost:3000`
 
