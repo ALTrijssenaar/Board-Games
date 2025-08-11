@@ -1,0 +1,93 @@
+{
+    "name": "Board Games Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/base:1-jammy",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/dotnet:2": {
+            "version": "8.0",
+            "aspNetCoreRuntimeVersions": "8.0"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "18",
+            "nodeGypDependencies": true,
+            "installYarnUsingApt": true
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "ppa": true,
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "installDirectlyFromGitHubRelease": true,
+            "version": "latest"
+        }
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.csdevkit",
+                "ms-dotnettools.vscode-dotnet-runtime",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-next",
+                "ms-vscode.vscode-json",
+                "formulahendry.auto-rename-tag",
+                "christian-kohler.path-intellisense",
+                "ms-vscode.vscode-eslint",
+                "GitHub.copilot",
+                "GitHub.copilot-chat"
+            ],
+            "settings": {
+                "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+                "dotnet.server.useOmnisharp": false,
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": "explicit"
+                },
+                "typescript.preferences.preferTypeOnlyAutoImports": true,
+                "typescript.suggest.autoImports": true,
+                "files.exclude": {
+                    "**/node_modules": true,
+                    "**/bin": true,
+                    "**/obj": true
+                }
+            }
+        }
+    },
+
+    "forwardPorts": [
+        5000,
+        5001, 
+        3000,
+        3001
+    ],
+    
+    "portsAttributes": {
+        "5000": {
+            "label": ".NET API (HTTP)",
+            "onAutoForward": "notify"
+        },
+        "5001": {
+            "label": ".NET API (HTTPS)",
+            "onAutoForward": "notify"
+        },
+        "3000": {
+            "label": "React Dev Server",
+            "onAutoForward": "openBrowser"
+        },
+        "3001": {
+            "label": "React Dev Server (Alt)",
+            "onAutoForward": "notify"
+        }
+    },
+
+    "postCreateCommand": ".devcontainer/post-create.sh",
+    
+    "remoteUser": "vscode",
+    
+    "containerEnv": {
+        "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+        "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "1"
+    }
+}
