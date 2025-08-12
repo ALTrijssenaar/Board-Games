@@ -78,12 +78,14 @@ For the best development experience, we recommend using the provided devcontaine
 
 4. **Start Developing:**
    - All dependencies are automatically installed
-   - Use `./.devcontainer/dev-helper.sh help` for common commands
+   - Use **VSCode tasks** for streamlined development: **Ctrl+Shift+P** → `Tasks: Run Task`
+   - Quick commands: **Ctrl+Shift+B** (Build All), **Ctrl+Shift+T** (Test All), **F5** (Debug)
+   - Use `./.devcontainer/dev-helper.sh help` for command-line tools
    - Run `./.devcontainer/validate.sh` to verify setup
    - Backend API: `http://localhost:5000`
    - Frontend: `http://localhost:3000`
 
-📖 See [.devcontainer/README.md](.devcontainer/README.md) for detailed setup instructions and troubleshooting.
+📖 See [.devcontainer/README.md](.devcontainer/README.md) for detailed setup instructions and [.vscode/README.md](.vscode/README.md) for VSCode tasks and debugging.
 
 #### Manual Setup
 If you prefer to set up your environment manually:
